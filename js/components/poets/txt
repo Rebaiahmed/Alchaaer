@@ -1,0 +1,29 @@
+
+                <Picker
+                                       iosHeader="Select one"
+                                       mode="dropdown"
+                                       selectedValue={this.state.selected1}
+                                       onValueChange={this.onValueChange.bind(this)}>
+                                       <Item label="أعلام الشعر العربي الحديث " value="key0" />
+                                       <Item label="شعراء المعلقات " value="key1" />
+                                       <Item label="الشعراء الصعاليك " value="key2" />
+                                       <Item label="العباسيون " value="key3" />
+                                       <Item label="الفاطميون " value="key4" />
+                                        <Item label="المماليك "  value="key5" />
+                                        <Item label=" (عصور مختلفة)" value="key6" />
+                                  </Picker>
+
+                                  <List dataArray={items}
+                                                         renderRow={(item) =>
+                                                           <ListItem>
+                                                               <Thumbnail  size={80} source={{ uri: item.Image }} />
+                                                               <Body>
+                                                                   <Text> { item.Nom } </Text>
+
+                                                                   <Text note>
+                                                                    { item.Historique}
+                                                                    </Text>
+                                                               </Body>
+                                                           </ListItem>
+                                                         }>
+                                                     </List>

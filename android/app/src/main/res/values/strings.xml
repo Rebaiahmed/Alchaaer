@@ -1,0 +1,7 @@
+<resources>
+    <string moduleConfig="true" name="reactNativeCodePush_androidDeploymentKey"></string>
+
+<string name="app_name">chouarae</string>
+<string name="facebook_app_id">303926966702492</string>
+<string name="fb_login_protocol_scheme">fb303926966702492</string>
+</resources>

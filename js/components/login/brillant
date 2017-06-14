@@ -1,0 +1,186 @@
+
+//*********Sign in method*****************//
+
+SignIn()
+{
+  //**************validate data**************************//
+    const { email, password } = this.state;
+
+    if (email.length === 0 || password.length==0) {
+      this.setState({ error: 'You must enter an email address' });
+
+      Toast.show({
+
+                    text: 'يجب ملئ جميع الخانات ',
+                    position: 'top',
+                    buttonText: 'أغلق'
+                  })
+
+
+    }
+
+  else if ( !validator.validate(email))
+  {
+
+    Toast.show({
+
+                  text: ' البريد الإلكتروني غير صالح',
+                  position: 'top',
+                  buttonText: 'أغلق'
+                })
+
+
+  }
+
+
+
+   else{
+
+        this.setState({myCondition : true})
+
+        fetch('http://192.168.XXX.XXX:3001/users', {
+           method: 'POST',
+           headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
+           body: JSON.stringify({
+             email: this.state.email,
+             password: this.state.password,
+           })
+         })
+         .then((response) => response.json())
+         .then((responseData) => {
+
+           //save token**************//
+           //this.saveItem('id_token', responseData.id_token),C
+           //Alert.alert( 'Signup Success!', 'Click the button to get a Chuck Norris quote!'),
+           AsyncStorage.setItem('userData', JSON.stringify(responseData.token));
+           this.setState({myCondition : false})
+              //Actions.home();
+         }).catch((error) =>
+             {
+                   this.setState({
+                     loading: false,
+                     myCondition : false
+                   });
+             alert('فشل تسجيل الدخول. حاول مرة اخرى '+error);
+                this.setState({ email:'',password:'' })
+         });
+
+
+
+    }
+
+}
+
+
+
+
+//***************************************************//
+
+
+
+login()
+{
+
+//**************validate data**************************//
+  const { email, password } = this.state;
+
+  if (email.length === 0 || password.length==0) {
+    this.setState({ error: 'You must enter an email address' });
+
+    Toast.show({
+
+                  text: 'يجب ملئ جميع الخانات ',
+                  position: 'top',
+                  buttonText: 'أغلق'
+                })
+
+
+  }
+
+else if ( !validator.validate(email))
+{
+
+  Toast.show({
+
+                text: ' البريد الإلكتروني غير صالح',
+                position: 'top',
+                buttonText: 'أغلق'
+              })
+
+
+}
+
+
+
+ else{
+
+      this.setState({myCondition : true})
+
+      firebaseAuth.signInWithEmailAndPassword(this.state.email, this.state.password
+          ).then((userData) =>
+            {
+              this.setState({
+                      loading: false
+                    });
+                    AsyncStorage.setItem('userData', JSON.stringify(userData));
+                    this.setState({myCondition : false})
+                Actions.home();
+            }
+          ).catch((error) =>
+              {
+                    this.setState({
+                      loading: false,
+                      myCondition : false
+                    });
+              alert('فشل تسجيل الدخول. حاول مرة اخرى '+error);
+                 this.setState({ email:'',password:'' })
+          });
+  }
+
+
+
+
+}
+
+
+
+
+
+
+
+
+/******************firebse get data******************//
+
+listenForPoemes(itemsRef) {
+
+
+
+
+
+    /*itemsRef.on('value', (snap) => {
+
+
+      // get children as an array
+      var poemes = [];
+      snap.forEach((child) => {
+        /*console.log("poeme"+ child.val() + "title" + child.val().title +"key" +child.key() + "content" + child.val().content
+      + "User" + child.val().User.name);*/
+      /*console.log("username" + child.val().User);
+        poemes.push({
+          title: child.val().title,
+          content : child.val().content,
+          //username : child.val().User.name,
+
+        });
+        console.log("poemes lengt"+ poemes.length);
+      });
+
+      this.setState({
+        poemes: this.state.dataSource.cloneWithRows(poemes)
+
+      });
+
+
+
+    });*/
+}

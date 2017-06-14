@@ -1,0 +1,61 @@
+      <Container>
+
+      <Header>
+                        <Left>
+                            <Button transparent>
+                                <Icon name='sign-in' />
+                            </Button>
+                        </Left>
+                        <Body>
+                            <Title> تسجيل دخول </Title>
+                        </Body>
+
+                    </Header>
+
+
+                   <Content>
+
+
+
+
+
+                       <Form>
+
+                       <Item floatingLabel last>
+                           <Label>البريد الإلكتروني </Label>
+                           <Input value={this.state.email} onChangeText={(email) => this.setState({email})} />
+                       </Item>
+
+
+                          <Item floatingLabel last>
+                              <Label>كلمة المرور </Label>
+                              <Input value={this.state.password} secureTextEntry onChangeText={(password) => this.setState({password})} />
+                          </Item>
+
+
+
+                          <Button onPress={this.login.bind(this)} style={{marginTop :50}} full rounded>
+                          <Text>تسجيل دخول</Text>
+                       </Button>
+                       </Form>
+
+                       <Button  style={styles.btn} onPress={this.logwithfacebook.bind(this)} full primary bordered  rounded >
+                  <Image
+                source={require('../../../images/social/facebook.png')}
+                fadeDuration={0}
+                style={{width: 20, height: 20}}
+                />
+
+                    <Text style={styles.btnText}>  تسجيل حساب فيسبوك </Text>
+                  </Button>
+
+                  <Button onPress={this.goRgister.bind(this)} style={{marginTop :50}} full info rounded>
+                  <Text>تسجيل حساب</Text>
+                </Button>
+
+
+
+
+
+                   </Content>
+               </Container>
