@@ -154,25 +154,26 @@ console.log("title is"+ title + "content is" + content + "userId" + userId);
          .then((responseData) => {
              console.log("created !");
              Alert("created !");
+
+             Toast.show({
+                             text: ' تم إضافة المحتوى بنجاح' ,
+                             position: 'bottom',
+                             buttonText: 'أغلق',
+
+
+                           })
              this.setState({loading:false});
+             Actions.home();
 
          }).catch(err=>{
            console.log("err"+ err);
+           Alert("حدث خلل، الرجاء المحاولة لاحقا ")
          })
 
 
-/*
-{this.state.loading &&
-                <Spinner color='blue' /> }
- */
-
-  Toast.show({
-                  text: ' تم إضافة المحتوى بنجاح' ,
-                  position: 'bottom',
-                  buttonText: 'أغلق',
 
 
-                })
+
 
 //Actions.home();
 //setTimeout(() => Actions.home(), 500);

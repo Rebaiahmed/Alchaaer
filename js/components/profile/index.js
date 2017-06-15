@@ -3,18 +3,20 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Actions } from 'react-native-router-flux';
 import { Container,Content, Header, Title, Form, Item, Input,Label,Button,Left,Right
-,Card, CardItem,Footer, FooterTab, Text,Body,Badge } from 'native-base';
+,Card, CardItem,Footer, FooterTab, Text,Body,Badge,InputGroup,
+View, List, ListItem } from 'native-base';
+import { StaticContainer,ScrollView } from 'react-native' ;
 
-
-import Icon from 'react-native-vector-icons/MaterialIcons';
+import Icon from 'react-native-vector-icons/FontAwesome';
 import { openDrawer } from '../../actions/drawer';
 import styles from './styles';
 var Dimensions = require('Dimensions');
 import Calendar from 'react-native-calendar-datepicker';
 import Moment from 'moment';
 
-
-
+import Tabs from 'react-native-tabs';
+import ScrollableTabView, { DefaultTabBar, } from 'react-native-scrollable-tab-view';
+import FacebookTabBar from './FacebookTabBar';
 
 
 class ProfilePage extends Component {
@@ -27,7 +29,8 @@ class ProfilePage extends Component {
     initialPosition: 'unknown',
      lastPosition: 'unknown',
      countryName: '',
-        regionName: ''}
+        regionName: '',
+      page:'second'}
      ;
 
 
@@ -44,12 +47,7 @@ class ProfilePage extends Component {
 //*************************************//
 componentDidMount() {
 
-  AsyncStorage.getItem("userId").then((value) => {
 
-
-  this.determineUser(value);
-
-  }).done();
 
 
 
@@ -182,95 +180,86 @@ UpdateProfile()
     const { props: { name, index, list } } = this;
     const {width, heigth} = Dimensions.get('window');
     return (
-      <Container style={styles.container}>
-        <Header>
-          <Left>
-            <Button transparent onPress={() => Actions.pop()}>
-              <Icon name="ios-arrow-back" />
-            </Button>
-          </Left>
-
-          <Body>
-            <Title>{(name) ? this.props.name : 'غير بروفيلك'}</Title>
-          </Body>
-
-          <Right>
-            <Button transparent onPress={this.props.openDrawer}>
-              <Icon name="ios-menu" />
-            </Button>
-          </Right>
-        </Header>
-
-        <Content padder>
-
-        <Card>
-        <Form>
-              <Item>
-                  <Input placeholder="Username" />
-              </Item>
-
-              <Item>
-                  <Input placeholder="Email" />
-              </Item>
-
-              <Item>
-                  <Input placeholder="location" />
-              </Item>
-
-              <Item>
-                  <Input placeholder="Date naissance" />
-              </Item>
-
-              <Item>
-              <Calendar
-onChange={(date) => this.setState({date})}
-selected={this.state.date}
-// We use Moment.js to give the minimum and maximum dates.
-minDate={Moment().startOf('day')}
-maxDate={Moment().add(10, 'years').startOf('day')}
-/>
-              </Item>
-
-              <InputGroup rounded borderType='regular'>
-              <Input style={{
-                  width: 200, height: 200
-              }}  multiline={true} placeholder= 'Bio'
-              onChangeText={(content) => this.setState({content})}/>
-          </InputGroup>
-
-          <Button rounded info>
-              <Text>Update Profile</Text>
-                    </Button>
-
-          </Form>
-                   </Card>
 
 
-        </Content>
+      <ScrollableTabView
+            style={{marginTop: 20, }}
+            initialPage={0}
+            renderTabBar={() => <FacebookTabBar />}
+      >
+          <ScrollView tabLabel="md-home" style={styles.tabView}>
+            <View style={styles.card}>
+              <Text>Mon Profile </Text>
 
+              <Card>
+                      <CardItem header>
+                          <Text>NativeBase</Text>
+                      </CardItem>
+                      <CardItem>
+                          <Body>
+                              <Text>
+                                hi hi
+                              </Text>
+                          </Body>
+                      </CardItem>
+                      <CardItem header>
+                          <Text>GeekyAnts</Text>
+                      </CardItem>
+                 </Card>
+            </View>
+          </ScrollView>
+          <ScrollView tabLabel="md-create" style={styles.tabView}>
+            <View style={styles.card}>
+              <Text>manchourati </Text>
+              <List>
+                     <ListItem >
+                         <Text>Simon Mignolet</Text>
+                     </ListItem>
+                     <ListItem>
+                         <Text>Nathaniel Clyne</Text>
+                     </ListItem>
+                     <ListItem>
+                         <Text>Dejan Lovren</Text>
+                     </ListItem>
+                 </List>
+            </View>
+          </ScrollView>
+          <ScrollView tabLabel="md-bookmark" style={styles.tabView}>
+            <View style={styles.card}>
+              <Text>almoufadhala</Text>
 
-        <Footer >
-                            <FooterTab>
-                                <Button badge vertical>
+              <List>
+                     <ListItem >
+                         <Text>Simon Mignolet</Text>
+                     </ListItem>
+                     <ListItem>
+                         <Text>Nathaniel Clyne</Text>
+                     </ListItem>
+                     <ListItem>
+                         <Text>Dejan Lovren</Text>
+                     </ListItem>
+                 </List>
+            </View>
+          </ScrollView>
+          <ScrollView tabLabel="md-notifications" style={styles.tabView}>
+            <View style={styles.card}>
+              <Text>Notifications</Text>
+            </View>
+          </ScrollView>
 
-                                    <Icon name="person" />
-                                    <Text>الملف الشخصي </Text>
-                                </Button>
-                                <Button>
-                                    <Icon name="camera" />
-                                    <Text>منشوراتي</Text>
-                                </Button>
-                                <Button active badge vertical>
-                                    <Badge ><Text>51</Text></Badge>
-                                    <Icon active name="navigate" />
-                                    <Text>رسائل</Text>
-                                </Button>
-                                <Button>
-                                    <Icon name="notifications-none" />
-                                    <Text>التنبيهات </Text>
-                                </Button>
-                            </FooterTab>
-                        </Footer>
+          <ScrollView tabLabel="md-chatboxes" style={styles.tabView}>
+            <View style={styles.card}>
+              <Text>Messages </Text>
+            </View>
+          </ScrollView>
+
+          <ScrollView tabLabel="md-exit" style={styles.tabView}>
+            <View style={styles.card}>
+              <Text>exit from here </Text>
+            </View>
+          </ScrollView>
+
+    </ScrollableTabView>
 
 
 
@@ -280,7 +269,6 @@ maxDate={Moment().add(10, 'years').startOf('day')}
 
 
 
-      </Container>
     );
   }
 }

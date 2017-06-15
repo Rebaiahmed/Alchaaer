@@ -106,7 +106,10 @@ Actions.PoemeDetailsPage({"titre":article})
                                           <Thumbnail square size={80} source ={ require('../../../images/poemes/defenition.jpg')} />
                                           <Body>
                                             <Animatable.Text animation="zoomInUp">
-                                              <Text onPress={() =>Actions.PoemeDefenitionPage()} >تعريف الشعر العربي </Text>
+
+                                              <Text onPress={() =>Actions.PoemeDefenitionPage()} >
+                                              تعريف الشعر العربي </Text>
+                                            
                                                 </Animatable.Text>
                                               <Text onPress={() =>Actions.PoemeDefenitionPage()} note > قراءة ألمزيد. . .</Text>
                                           </Body>
@@ -222,4 +225,4 @@ const mapStateToProps = state => ({
 });
 
 PoemesPage= Animatable.createAnimatableComponent(PoemesPage);
-export default connect(mapStateToProps, bindAction)(PoemesPage);
+export default connect(null, bindAction)(PoemesPage);

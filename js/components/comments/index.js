@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Actions } from 'react-native-router-flux';
 import { Container, Header, Title, Content, Text, Button, Icon, Left, Right, Body,
-InputGroup, Input,List, ListItem,Item,Thumbnail,Footer  } from 'native-base';
+InputGroup, Input,List, ListItem,Item,Thumbnail,Footer ,Alert } from 'native-base';
 import {Column as Col, Row} from 'react-native-flexbox-grid';
 import { openDrawer } from '../../actions/drawer';
 import styles from './styles';
@@ -60,13 +60,17 @@ addComment()
 
   const comment = this.state.comment ;
 const pubId = this.props.pubId ;
-  fetch('http://192.168.1.5:4040/api/publications', {
-     method: 'POST',
+const userId = this.state.userId ;
+console.log("data send to server"+ pubId +
+"coment" + comment + "userId" + userId);
+
+  fetch('http://192.168.1.5:4040/api/publications/comments/' + pubId +'', {
+     method: 'PUT',
      headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
 
 
      body: JSON.stringify({
-      commentBody : title ,
+      commentBody : comment ,
       userId  : userId,
       pubId : pubId
 
@@ -75,14 +79,18 @@ const pubId = this.props.pubId ;
    })
    .then((response) => response.json())
    .then((responseData) => {
-       console.log("created !");
+       console.log("reposnse data comment" + JSON.stringify(responseData));
        Alert("created !");
        this.setState({loading:false});
+this.setState({comment :''});
 
    }).catch(err=>{
      console.log("err"+ err);
+     this.setState({comment :''});
    })
 
+   //*****
+ this.setState({comment :''});
 }
 
 
@@ -118,7 +126,7 @@ if(id)
    })
    .then((response) => response.json())
    .then((responseData) => {
-  console.log("responseData" + JSON.stringify(responseData));
+  console.log("pub" + JSON.stringify(responseData));
     this.setState({pub:responseData});
 
    }).catch((error) =>
@@ -191,23 +199,24 @@ this.determinePub();
 
 
 
-              <Item underline>
-                      <Input placeholder='أضف تعليقا'   onChangeText={(comment) => this.setState({comment})} />
-                  </Item>
+
+
+
+
                   <InputGroup rounded borderType='regular'>
                   <Input style={{
-                      width: 200, height: 200
-                  }}  multiline={true} placeholder= 'محتوى القصيدة '
+                      width: 120, height: 120
+                  }}  multiline={true} placeholder= 'أضف تعليقا'
                  onChangeText={(comment) => this.setState({comment})}/>
                 </InputGroup>
 
 
 
-                       <Button outline light bordered block onPress={this.addComment.bind(this)}>
+                       <Button  bordered block onPress={this.addComment.bind(this)}>
                             <Text>أضف</Text>
                         </Button>
 
-      
+
 
         </Content>
       </Container>

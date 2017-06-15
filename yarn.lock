@@ -3467,11 +3467,11 @@ lodash@^3.5.0:
   version "3.10.1"
   resolved "https://registry.yarnpkg.com/lodash/-/lodash-3.10.1.tgz#5bf45e8e49ba4189e17d482789dfd15bd140b7b6"
 
-lodash@^4.0.0, lodash@^4.11.1, lodash@^4.14.0, lodash@^4.15.0, lodash@^4.16.6, lodash@^4.17.3, lodash@^4.17.4, lodash@^4.2.0, lodash@^4.2.1, lodash@^4.3.0, lodash@^4.6.1, lodash@^4.8.0:
+lodash@^4.0.0, lodash@^4.10.1, lodash@^4.11.1, lodash@^4.14.0, lodash@^4.15.0, lodash@^4.16.6, lodash@^4.17.3, lodash@^4.17.4, lodash@^4.2.0, lodash@^4.2.1, lodash@^4.3.0, lodash@^4.6.1, lodash@^4.8.0:
   version "4.17.4"
   resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.4.tgz#78203a4d1c328ae1d86dca6460e369b57f4055ae"
 
-lodash@^4.10.1, lodash@~4.11.1:
+lodash@~4.11.1:
   version "4.11.2"
   resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.11.2.tgz#d6b4338b110a58e21dae5cebcfdbbfd2bc4cdb3b"
 
@@ -4204,6 +4204,10 @@ react-native-app-link@^0.3.0:
   version "0.3.0"
   resolved "https://registry.yarnpkg.com/react-native-app-link/-/react-native-app-link-0.3.0.tgz#8252bf51d2777c7e0e645db15e66775dd53438e7"
 
+react-native-audio@^3.2.2:
+  version "3.2.2"
+  resolved "https://registry.yarnpkg.com/react-native-audio/-/react-native-audio-3.2.2.tgz#0fcbda338c9cc85aabed595f9c762fa6eebbdb88"
+
 react-native-browser@^0.6.2:
   version "0.6.2"
   resolved "https://registry.yarnpkg.com/react-native-browser/-/react-native-browser-0.6.2.tgz#b3509aa9874684ae8850c3a3a521a3260ea15a0a"
@@ -4295,13 +4299,7 @@ react-native-router-flux@3.37.0:
     react-native-tabs "^1.0.9"
     react-static-container "1.0.1"
 
-react-native-scrollable-tab-view@^0.6.0:
-  version "0.6.5"
-  resolved "https://registry.yarnpkg.com/react-native-scrollable-tab-view/-/react-native-scrollable-tab-view-0.6.5.tgz#61a46b88d637b192b4868ef3322963f21d46c55f"
-  dependencies:
-    react-timer-mixin "^0.13.3"
-
-react-native-scrollable-tab-view@^0.7.1:
+react-native-scrollable-tab-view@0.7.4, react-native-scrollable-tab-view@^0.7.1:
   version "0.7.4"
   resolved "https://registry.yarnpkg.com/react-native-scrollable-tab-view/-/react-native-scrollable-tab-view-0.7.4.tgz#623a047cbfab35a27b8689095af524e9aac74b62"
   dependencies:
@@ -4315,6 +4313,10 @@ react-native-share@^1.0.20:
 react-native-social-share@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/react-native-social-share/-/react-native-social-share-1.0.0.tgz#32b4ba82dbddb884819e01931dbaa54c46bd867e"
+
+react-native-sound@^0.10.1:
+  version "0.10.1"
+  resolved "https://registry.yarnpkg.com/react-native-sound/-/react-native-sound-0.10.1.tgz#c6afa5114cea6e39f479a2c67d6d843894ed745c"
 
 react-native-tabs@^1.0.9:
   version "1.0.9"
